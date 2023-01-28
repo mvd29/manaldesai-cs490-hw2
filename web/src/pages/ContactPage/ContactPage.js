@@ -1,4 +1,11 @@
-import { Form, TextField, TextAreaField, Submit } from '@redwoodjs/forms'
+import {
+  FieldError,
+  Form,
+  Label,
+  TextField,
+  TextAreaField,
+  Submit,
+} from '@redwoodjs/forms'
 import { MetaTags } from '@redwoodjs/web'
 
 const ContactPage = () => {
@@ -7,18 +14,43 @@ const ContactPage = () => {
   }
 
   return (
-    <Form onSubmit={onSubmit}>
-      <label htmlFor="name">Name</label>
-      <TextField name="name" required />
+    <>
+      <MetaTags title="Contact" description="Contact page" />
 
-      <label htmlFor="email">Email</label>
-      <TextField name="email" required />
+      <Form onSubmit={onSubmit}>
+        <Label name="name" errorClassName="error">
+          Name
+        </Label>
+        <TextField
+          name="name"
+          validation={{ required: true }}
+          errorClassName="error"
+        />
+        <FieldError name="name" className="error" />
 
-      <label htmlFor="message">Message</label>
-      <TextAreaField name="message" required />
+        <Label name="email" errorClassName="error">
+          Email
+        </Label>
+        <TextField
+          name="email"
+          validation={{ required: true }}
+          errorClassName="error"
+        />
+        <FieldError name="email" className="error" />
 
-      <Submit>Save</Submit>
-    </Form>
+        <Label name="message" errorClassName="error">
+          Message
+        </Label>
+        <TextAreaField
+          name="message"
+          validation={{ required: true }}
+          errorClassName="error"
+        />
+        <FieldError name="message" className="error" />
+
+        <Submit>Save</Submit>
+      </Form>
+    </>
   )
 }
 
